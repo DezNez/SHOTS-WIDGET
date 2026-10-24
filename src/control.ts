@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const channel = urlParams.get('channel');
 const key = urlParams.get('key');
 
-if (!channel || !key) document.body.innerHTML = '<h1 class="text-red-500 text-center mt-10 text-xl font-bold">❌ Укажите ?channel=...&key=...</h1>';
+if (!channel || !key) document.body.innerHTML = '<h1 class="text-red-300 text-center mt-10 text-xl font-bold">❌ Укажите ?channel=...&key=...</h1>';
 
 const wsUrl = `wss://newbot.mickeyisdev.ru/ws/shots/${channel}`;
 let ws: WebSocket;
