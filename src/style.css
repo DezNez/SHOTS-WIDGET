@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: "Cormorant SC", serif;
 }
 
 :root {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  font-weight: 700;
 }
 
 /* Apple Glass Material */

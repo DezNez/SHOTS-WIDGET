@@ -4,7 +4,7 @@ const key = urlParams.get('key');
 
 if (!channel || !key) document.body.innerHTML = '<h1 class="text-red-500 text-center mt-10 text-xl font-bold">❌ Укажите ?channel=...&key=...</h1>';
 
-const wsUrl = `wss://bot.mickeyisdev.ru/ws/shots/${channel}`;
+const wsUrl = `wss://newbot.mickeyisdev.ru/ws/shots/${channel}`;
 let ws: WebSocket;
 
 interface Shot { id: number; name: string; count: number; base_price: number; step: number; }
@@ -122,14 +122,16 @@ const form = document.getElementById('shot-form') as HTMLFormElement;
     fd.append('base_price', shot.base_price.toString()); fd.append('step', shot.step.toString());
     fd.append('count', newCount.toString()); fd.append('channel', channel!); fd.append('key', key!);
 
-    await fetch('https://bot.mickeyisdev.ru/shots/update', { method: 'POST', body: fd });
+    await fetch('https://newbot.mickeyisdev.ru/shots/update', { method: 'POST', body: fd });
 };
 
 (window as any).deleteShot = async (id: number) => {
-    if (!confirm('Удалить позицию?')) return;
+    // Убрали проверку с confirm()
     const fd = new FormData();
-    fd.append('id', id.toString()); fd.append('channel', channel!); fd.append('key', key!);
-    await fetch('https://bot.mickeyisdev.ru/shots/delete', { method: 'POST', body: fd });
+    fd.append('id', id.toString()); 
+    fd.append('channel', channel!); 
+    fd.append('key', key!);
+    await fetch('https://newbot.mickeyisdev.ru/shots/delete', { method: 'POST', body: fd });
 };
 
 form.addEventListener('submit', async (e) => {
@@ -147,9 +149,9 @@ form.addEventListener('submit', async (e) => {
     if (id) {
         fd.append('id', id);
         fd.append('count', count);
-        await fetch('https://bot.mickeyisdev.ru/shots/update', { method: 'POST', body: fd });
+        await fetch('https://newbot.mickeyisdev.ru/shots/update', { method: 'POST', body: fd });
     } else {
-        await fetch('https://bot.mickeyisdev.ru/shots/add', { method: 'POST', body: fd });
+        await fetch('https://newbot.mickeyisdev.ru/shots/add', { method: 'POST', body: fd });
     }
     
     (window as any).closeModal();
