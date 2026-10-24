@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Управление Шотами</title>
+  <link rel="stylesheet" href="/src/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#09090b] text-white min-h-screen p-4 flex justify-center">
+  
+  <!-- Основная компактная панель -->
+  <div class="w-full max-w-md flex flex-col gap-4">
+    <div class="flex items-center justify-between px-1">
+      <h1 class="text-xl font-bold tracking-tight-display text-white/90">Шоты</h1>
+      <button onclick="openModal()" class="apple-btn bg-blue-500 hover:bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20">
+        <i data-lucide="plus" class="w-5 h-5"></i>
+      </button>
+    </div>
+    
+    <div id="shots-list" class="flex flex-col gap-3"></div>
+  </div>
+
+  <!-- Модалка (Попап) -->
+  <div id="modal-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-md hidden items-center justify-center z-50 p-4 opacity-0 transition-opacity duration-200">
+    <div class="apple-glass rounded-2xl p-5 w-full max-w-sm transform scale-95 transition-transform duration-200" id="modal-content">
+      <div class="flex justify-between items-center mb-4">
+        <h2 id="modal-title" class="text-lg font-semibold tracking-tight-display text-white/90">Добавить шот</h2>
+        <button onclick="closeModal()" class="text-white/50 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      
+      <form id="shot-form" class="flex flex-col gap-3">
+        <input type="hidden" id="shot-id">
+        <input type="hidden" id="shot-count" value="0">
+        
+        <div>
+          <label class="text-xs text-white/50 font-medium mb-1 block">Название</label>
+          <input type="text" id="name" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition-colors text-sm" required>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-white/50 font-medium mb-1 block">База (₽)</label>
+            <input type="number" id="base_price" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition-colors text-sm" required>
+          </div>
+          <div>
+            <label class="text-xs text-white/50 font-medium mb-1 block">Шаг (₽)</label>
+            <input type="number" id="step" class="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition-colors text-sm" required>
+          </div>
+        </div>
+        
+        <button type="submit" class="apple-btn w-full bg-blue-500 text-white font-semibold rounded-lg px-4 py-2 mt-2 text-sm shadow-lg shadow-blue-500/20">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/src/control.ts"></script>
+</body>
+</html>
